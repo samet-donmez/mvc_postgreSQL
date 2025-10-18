@@ -1,0 +1,24 @@
+﻿@model mvc_postgresql.Models.Departman
+
+@{
+    ViewData["Title"] = "Yeni Departman Ekle";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="DepartmanAd" class="form-label"></label>
+        <input asp-for="DepartmanAd" class="form-control" />
+        <span asp-validation-for="DepartmanAd" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

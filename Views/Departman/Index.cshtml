@@ -1,0 +1,32 @@
+﻿@model IEnumerable<mvc_postgresql.Models.Departman>
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info">@TempData["msg"]</div>
+}
+<h2>Departman Listesi</h2>
+<a asp-action="Create" class="btn btn-primary mb-2">Yeni Departman Ekle</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Personel Sayısı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dep in Model)
+        {
+            <tr>
+                <td>@dep.Id</td>
+                <td>@dep.DepartmanAd</td>
+                <td>@(dep.Personeller?.Count ?? 0)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@dep.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                    <a asp-action="Delete" asp-route-id="@dep.Id" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
